@@ -1,0 +1,22 @@
+services:
+  app_go:
+    image: juliofc/desafio_grpc:latest
+    ports:
+      - 50051:50051
+    networks:
+      - desafio_network
+      
+  app_nestjs:  
+    build: .
+    ports:
+      - 3000:3000      
+    volumes:
+      - .:/home/node/app
+    networks:
+      - desafio_network
+    
+networks:
+  desafio_network:
+    driver: bridge
+    ipam:
+      driver: default  
